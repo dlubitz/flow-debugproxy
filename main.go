@@ -15,7 +15,7 @@ import (
 
 	// Register available path mapper
 	_ "github.com/dfeyer/flow-debugproxy/dummypathmapper"
-	_ "github.com/dfeyer/flow-debugproxy/flowpathmapper"
+	_ "github.com/dlubitz/flow-debugproxy/flowpathmapper"
 
 	"github.com/codegangsta/cli"
 
