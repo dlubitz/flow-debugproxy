@@ -94,7 +94,8 @@ func (p *PathMapper) doTextPathMapping(message []byte) []byte {
 
 func (p *PathMapper) getCachePath(base, filename string) string {
 	cachePath := strings.Replace(cachePathPattern, "@base@", base, 1)
-	cachePath = strings.Replace(cachePath, "@context@", p.config.Context, 1)
+	contextPath := strings.Replace(p.config.Context, "/", "/SubContext", 1)
+	cachePath = strings.Replace(cachePath, "@context@", contextPath, 1)
 	return strings.Replace(cachePath, "@filename@", filename, 1)
 }
 
