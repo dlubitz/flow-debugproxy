@@ -21,6 +21,7 @@ import (
 
 	"net"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 	app.Usage = "Flow Framework xDebug proxy"
 	app.Author = "Dominique Feyer"
 	app.Email = "dominique@neos.io"
-	app.Version = "0.9.0"
+	app.Version = "1.0.1"
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
@@ -46,6 +47,11 @@ func main() {
 			Name:  "context, c",
 			Value: "Development",
 			Usage: "The context to run as",
+		},
+		cli.StringFlag{
+			Name:  "localroot, r",
+			Value: "",
+			Usage: "Local project root for remote debugging",
 		},
 		cli.StringFlag{
 			Name:  "framework",
@@ -70,6 +76,7 @@ func main() {
 		c := &config.Config{
 			Context:     cli.String("context"),
 			Framework:   cli.String("framework"),
+			LocalRoot:   strings.TrimRight(cli.String("localroot"), "/"),
 			Verbose:     cli.Bool("verbose") || cli.Bool("vv"),
 			VeryVerbose: cli.Bool("vv"),
 			Debug:       cli.Bool("debug"),
